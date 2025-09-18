@@ -9,7 +9,11 @@ export default function AuthLayout({
 }) {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="w-full max-w-md bg-white shadow-xl rounded-3xl p-10 relative">
+      <div className="w-full max-w-md bg-white shadow-xl rounded-3xl p-10 relative
+        sm:rounded-3xl sm:p-10
+        rounded-none p-0 min-h-screen
+        sm:min-h-0
+      ">
         <div className="mb-8 text-center items-center justify-center relative z-10">
           <div className="items-center">
             <Link href="/" className="flex items-center justify-center">

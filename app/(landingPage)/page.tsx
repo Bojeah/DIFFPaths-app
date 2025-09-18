@@ -8,7 +8,8 @@ export default function Home() {
           The Money App For You
         </h1>
         <p className="mt-4 text-black text-base sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl font-medium max-w-xl">
-          Send money for free, experience seamless cashless payments, and grow your savings with DIFFPaths.
+          Send money for free, experience seamless cashless payments, and grow
+          your savings with DIFFPaths.
         </p>
       </div>
 

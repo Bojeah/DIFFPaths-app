@@ -1,8 +1,7 @@
-// app/signup/page.tsx
 export default function SignupPage() {
   return (
     <div className="flex items-center justify-center">
-      <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-md">
+      <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-md sm:p-8">
         <h2 className="mb-6 text-center text-2xl font-bold text-gray-800">
           Create an Account
         </h2>
@@ -14,7 +13,7 @@ export default function SignupPage() {
             <input
               type="text"
               placeholder="John Doe"
-              className="mt-1 w-full rounded-lg border border-gray-300 p-3 focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
+              className="mt-1 w-full rounded-lg border border-gray-300 p-3 focus:border-black focus:outline-none focus:ring-1 focus:ring-black text-gray-700"
             />
           </div>
           <div>
@@ -24,7 +23,7 @@ export default function SignupPage() {
             <input
               type="email"
               placeholder="you@example.com"
-              className="mt-1 w-full rounded-lg border border-gray-300 p-3 focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
+              className="mt-1 w-full rounded-lg border border-gray-300 p-3 focus:border-black focus:outline-none focus:ring-1 focus:ring-black text-gray-700"
             />
           </div>
           <div>
