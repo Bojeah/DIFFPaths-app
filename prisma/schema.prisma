@@ -1,4 +1,4 @@
-
+// prisma/schema.prisma
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,32 +8,46 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String    @unique
-  passwordHash  String 
-  accounts      Account[]
-  createdAt     DateTime  @default(now())
+enum SavingsType {
+  AUTOMATED
+  SAFELOCK
+  TARGET
 }
 
-model Account {
-  id          String       @id @default(cuid())
-  userId      String
-  type        String        
-  name        String?
-  balance     Float        @default(0)
-  createdAt   DateTime     @default(now())
-  user        User         @relation(fields: [userId], references: [id])
-  transactions Transaction[]
+enum TransactionType {
+  DEPOSIT
+  WITHDRAWAL
+}
+
+model User {
+  id           String          @id @default(uuid())
+  name         String
+  email        String          @unique
+  passwordHash String
+  savingsAccounts SavingsAccount[]
+}
+
+model SavingsAccount {
+  id            String          @id @default(uuid())
+  userId        String
+  user          User            @relation(fields: [userId], references: [id])
+  name          String
+  goalAmount    Float
+  currentAmount Float
+  type          SavingsType
+  startDate     DateTime        @default(now())
+  endDate       DateTime?
+  penalty       Float           @default(0.0)
+  transactions  Transaction[]
 }
 
 model Transaction {
-  id          String    @id @default(cuid())
+  id          String          @id @default(uuid())
   accountId   String
-  type        String    // "credit" | "debit"
+  account     SavingsAccount  @relation(fields: [accountId], references: [id])
   amount      Float
-  description String?
-  createdAt   DateTime  @default(now())
-  account     Account   @relation(fields: [accountId], references: [id])
+  type        TransactionType
+  date        DateTime        @default(now())
+  status      String
 }
+
