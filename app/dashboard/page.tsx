@@ -19,8 +19,6 @@ import {
   PiggyBank,
   ArrowDownRight,
 } from "lucide-react";
-import { getSavings } from "../api/dashboard/route";
-
 const Dashboard = () => {
   const [savingsAccounts, setSavingsAccounts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -29,7 +27,11 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchSavings = async () => {
       try {
-        const data = await getSavings();
+        const response = await fetch('/api/dashboard');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
         setSavingsAccounts(data);
       } catch (err) {
         setError(
