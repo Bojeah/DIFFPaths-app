@@ -2,10 +2,8 @@
 
 import { z } from "zod";
 import { redirect } from "next/navigation";
-import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
-
-const prisma = new PrismaClient();
+import prisma from "../../lib/prisma";
 
 // Schema for registration validation
 const signupSchema = z.object({
