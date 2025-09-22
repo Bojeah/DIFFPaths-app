@@ -37,7 +37,9 @@ export default function SignupPage() {
               className="mt-1 w-full rounded-lg border border-gray-300 p-3 focus:border-black focus:outline-none focus:ring-1 focus:ring-black text-gray-700"
             />
             {state?.errors?.name && (
-              <p className="text-red-500 text-sm mt-1">{state.errors.name}</p>
+              <p className="text-red-500 text-sm mt-1">
+                {Array.isArray(state.errors.name) ? state.errors.name[0] : state.errors.name}
+              </p>
             )}
           </div>
           <div>
@@ -51,7 +53,9 @@ export default function SignupPage() {
               className="mt-1 w-full rounded-lg border border-gray-300 p-3 focus:border-black focus:outline-none focus:ring-1 focus:ring-black text-gray-700"
             />
             {state?.errors?.email && (
-              <p className="text-red-500 text-sm mt-1">{state.errors.email}</p>
+              <p className="text-red-500 text-sm mt-1">
+                {Array.isArray(state.errors.email) ? state.errors.email[0] : state.errors.email}
+              </p>
             )}
           </div>
           <div>
@@ -66,7 +70,7 @@ export default function SignupPage() {
             />
             {state?.errors?.password && (
               <p className="text-red-500 text-sm mt-1">
-                {state.errors.password}
+                {Array.isArray(state.errors.password) ? state.errors.password[0] : state.errors.password}
               </p>
             )}
           </div>

@@ -17,7 +17,16 @@ const signupSchema = z.object({
     .trim(),
 });
 
-export async function signup(prevState: any, formData: FormData) {
+interface SignupState {
+  errors?: {
+    name?: string[] | string;
+    email?: string[] | string;
+    password?: string[] | string;
+    general?: string;
+  };
+}
+
+export async function signup(prevState: SignupState | undefined, formData: FormData): Promise<SignupState> {
   const result = signupSchema.safeParse(Object.fromEntries(formData));
 
   if (!result.success) {
