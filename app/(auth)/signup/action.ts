@@ -24,7 +24,10 @@ interface SignupState {
   };
 }
 
-export async function signup(prevState: SignupState | undefined, formData: FormData): Promise<SignupState> {
+export async function signup(
+  prevState: SignupState | undefined,
+  formData: FormData
+): Promise<SignupState> {
   const result = signupSchema.safeParse(Object.fromEntries(formData));
 
   if (!result.success) {
@@ -47,11 +50,12 @@ export async function signup(prevState: SignupState | undefined, formData: FormD
       },
     });
     console.log("User created:", user.name);
+    redirect("/login");
   } catch (error: any) {
     console.error("Registration error:", error);
 
     // Handle specific Prisma errors
-    if (error.code === 'P2002' && error.meta?.target?.includes('email')) {
+    if (error.code === "P2002" && error.meta?.target?.includes("email")) {
       return {
         errors: { email: "Email already exists" },
       };
@@ -62,7 +66,4 @@ export async function signup(prevState: SignupState | undefined, formData: FormD
       errors: { general: "Something went wrong. Please try again." },
     };
   }
-
-  // Redirect to login on successful registration
-  redirect("/login");
 }
