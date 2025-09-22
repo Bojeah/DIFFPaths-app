@@ -42,7 +42,13 @@ export async function GET(request: NextRequest) {
         });
 
         // Transform the data to match the interface
-        const transformedSavings: SavingsAccount[] = savingsDetails.map(account => ({
+        const transformedSavings: SavingsAccount[] = savingsDetails.map((account: {
+            id: string;
+            name: string;
+            type: string;
+            currentAmount: number;
+            goalAmount: number;
+        }) => ({
             id: account.id,
             name: account.name,
             type: account.type as "AUTOMATED" | "SAFELOCK" | "TARGET",
