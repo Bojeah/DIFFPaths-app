@@ -49,9 +49,17 @@ export async function signup(
         passwordHash,
       },
     });
+
     console.log("User created:", user.name);
+
+    // This will throw NEXT_REDIRECT (not a real error) and Next.js will handle it
     redirect("/login");
   } catch (error: any) {
+    // Allow Next.js redirects to go through without logging as errors
+    if (error.digest?.startsWith("NEXT_REDIRECT")) {
+      throw error;
+    }
+
     console.error("Registration error:", error);
 
     // Handle specific Prisma errors

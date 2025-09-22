@@ -18,7 +18,7 @@ export default function AuthLayout({
           <div className="items-center">
             <Link href="/" className="flex items-center justify-center">
               <Image
-                src="../../public/LOGO.png"
+                src="/favicon.ico"
                 alt="Project Logo"
                 width={40}
                 height={40}
